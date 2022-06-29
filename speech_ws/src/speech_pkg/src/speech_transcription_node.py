@@ -10,6 +10,8 @@ import argparse
 import tensorflow as tf
 from lang_settings import AVAILABLE_LANGS
 
+from transformers import Wav2Vec2Processor, Wav2Vec2ForCTC
+from datasets import load_dataset
 
 
 class Transcriber:
@@ -56,15 +58,29 @@ class Transcriber:
         #     l.append("{:.13f}".format(float(ele)))
         # yPredMax =  np.argmax(y)
         # return yPredMax,l[yPredMax]
-        out_str = "My name is Pepper"
-        return out_str
+        path_to_model = "/models/w2v2-base/wav2vec2-base-ft-cv4"
+
+        # load model and tokenizer
+        processor = Wav2Vec2Processor.from_pretrained(path_to_model)
+        model = Wav2Vec2ForCTC.from_pretrained(path_to_model)
+
+        # tokenize
+        input_values = processor(signal, return_tensors="pt", padding="longest", sampling_rate=16_000).input_values  # Batch size 1
+
+        # retrieve logits
+        logits = model(input_values).logits
+
+        # take argmax and decode
+        predicted_ids = torch.argmax(logits, dim=-1)
+        transcription = processor.batch_decode(predicted_ids)
+        #print(transcription)
+        out_str = "You said: "
+        transcription = out_str + transcription
+        return transcription
 
     def parse_req(self, req):
         signal = self.convert(req.data.data)
         audio_transcription = self.transcribe_audio(signal)
-        '''assert len(cmd) == 1
-        cmd = int(cmd[0])
-        probs = probs.tolist()[0]'''
         return TranscriptionResponse(audio_transcription)
 
     def init_node(self):
