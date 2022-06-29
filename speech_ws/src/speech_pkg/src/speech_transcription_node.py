@@ -73,9 +73,9 @@ class Transcriber:
         # take argmax and decode
         predicted_ids = torch.argmax(logits, dim=-1)
         transcription = processor.batch_decode(predicted_ids)
-        #print(transcription)
+        print(transcription)
         out_str = "You said: "
-        transcription = out_str + transcription
+        transcription = out_str
         return transcription
 
     def parse_req(self, req):
