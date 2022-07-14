@@ -9,7 +9,7 @@ from pathlib import Path
 import argparse
 import tensorflow as tf
 from lang_settings import AVAILABLE_LANGS
-
+import time
 from transformers import Wav2Vec2Processor, Wav2Vec2ForCTC, WavLMForCTC
 from datasets import load_dataset
 
@@ -80,7 +80,10 @@ class Transcriber:
 
     def parse_req(self, req):
         signal = self.convert(req.data.data)
+        start = time.time()
         audio_transcription = self.transcribe_audio(signal)
+        end = time.time()
+        print("The time of inference is: " + str(end - start))
         return TranscriptionResponse(audio_transcription)
 
     def init_node(self):
