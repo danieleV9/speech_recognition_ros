@@ -10,7 +10,7 @@ import argparse
 import tensorflow as tf
 from lang_settings import AVAILABLE_LANGS
 
-from transformers import Wav2Vec2Processor, Wav2Vec2ForCTC
+from transformers import Wav2Vec2Processor, Wav2Vec2ForCTC, WavLMForCTC
 from datasets import load_dataset
 
 
@@ -62,7 +62,7 @@ class Transcriber:
 
         # load model and tokenizer
         processor = Wav2Vec2Processor.from_pretrained(path_to_model)
-        model = Wav2Vec2ForCTC.from_pretrained(path_to_model)
+        model = WavLMForCTC.from_pretrained(path_to_model)
 
         # tokenize
         input_values = processor(signal, return_tensors="pt", padding="longest", sampling_rate=16_000).input_values  # Batch size 1
