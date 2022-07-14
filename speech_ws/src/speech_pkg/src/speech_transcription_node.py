@@ -58,7 +58,7 @@ class Transcriber:
         #     l.append("{:.13f}".format(float(ele)))
         # yPredMax =  np.argmax(y)
         # return yPredMax,l[yPredMax]
-        path_to_model = "/models/w2v2-base/"
+        path_to_model = "/models/wawlm-base-plus-cv/"
 
         # load model and tokenizer
         processor = Wav2Vec2Processor.from_pretrained(path_to_model)
