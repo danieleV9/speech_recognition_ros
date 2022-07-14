@@ -36,6 +36,7 @@ class MicrophoneNode:
 
         while not rospy.is_shutdown():
             # Get data
+            rospy.loginfo("I am listening...")
             audio_frame = audio_stream.get_audio_frame()
             
             # Message preparation
