@@ -60,11 +60,12 @@ class Transcriber:
         # return yPredMax,l[yPredMax]
 
         path_to_model = "/models/wawlm-base-plus-cv/"
-        start = time.time()
+
         # load model and tokenizer
         processor = Wav2Vec2Processor.from_pretrained(path_to_model)
         model = WavLMForCTC.from_pretrained(path_to_model)
 
+        start = time.time()
         # tokenize
         input_values = processor(signal, return_tensors="pt", padding="longest", sampling_rate=16_000).input_values  # Batch size 1
 
@@ -75,6 +76,7 @@ class Transcriber:
         predicted_ids = torch.argmax(logits, dim=-1)
         transcription = processor.batch_decode(predicted_ids)
         end = time.time()
+        
         print("The time of inference is: " + str(end - start))
         transcription = transcription[0]
         return transcription
