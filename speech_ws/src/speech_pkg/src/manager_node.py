@@ -2,12 +2,17 @@
 from multiprocessing import Manager
 import rospy
 from speech_pkg.srv import *
+import time
 
 def run(req):
+    start = time.time()
     res = transcribe(req.data)
+    end = time.time()
+    total = end - start
+    print(total)
     out_string = res.s
     print(out_string)
-    #res = speech(out_string)
+    res = speech(out_string)
     #return ManagerResponse(res.flag)
     return ManagerResponse(True)
 
