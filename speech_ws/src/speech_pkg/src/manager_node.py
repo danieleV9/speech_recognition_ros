@@ -7,7 +7,7 @@ import time
 def run(req):
     res = transcribe(req.data)
     out_string = res.s
-    print(out_string)
+    print("You said: " + out_string)
     #res = speech(out_string)
     #return ManagerResponse(res.flag)
     return ManagerResponse(True)

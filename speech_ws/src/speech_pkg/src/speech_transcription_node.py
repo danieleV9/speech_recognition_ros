@@ -58,8 +58,9 @@ class Transcriber:
         #     l.append("{:.13f}".format(float(ele)))
         # yPredMax =  np.argmax(y)
         # return yPredMax,l[yPredMax]
-        path_to_model = "/models/wawlm-base-plus-cv/"
 
+        path_to_model = "/models/wawlm-base-plus-cv/"
+        start = time.time()
         # load model and tokenizer
         processor = Wav2Vec2Processor.from_pretrained(path_to_model)
         model = WavLMForCTC.from_pretrained(path_to_model)
@@ -73,17 +74,14 @@ class Transcriber:
         # take argmax and decode
         predicted_ids = torch.argmax(logits, dim=-1)
         transcription = processor.batch_decode(predicted_ids)
-        print(transcription)
-        out_str = "You said: "
-        transcription = out_str
+        end = time.time()
+        print("The time of inference is: " + str(end - start))
+        transcription = transcription[0]
         return transcription
 
     def parse_req(self, req):
         signal = self.convert(req.data.data)
-        start = time.time()
         audio_transcription = self.transcribe_audio(signal)
-        end = time.time()
-        print("The time of inference is: " + str(end - start))
         return TranscriptionResponse(audio_transcription)
 
     def init_node(self):
