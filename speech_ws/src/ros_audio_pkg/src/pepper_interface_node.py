@@ -13,10 +13,10 @@ pub = rospy.Publisher('tts_ack', String, queue_size=1)
 def callback(text):
     resp_tts = tts(text.data)
     if resp_tts.ack == "ACK0":
-        print("gtts ok")
+        print("tts ok")
         pub.publish(resp_tts.ack)
     else:
-        print("Error with gtts")
+        print("Error with tts")
         pub.publish(resp_tts.ack)
 
 def listener():
