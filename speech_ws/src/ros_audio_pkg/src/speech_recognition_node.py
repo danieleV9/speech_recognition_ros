@@ -15,7 +15,8 @@ pub1 = rospy.Publisher('voice_data', Int16MultiArray, queue_size=1)
 pub2 = rospy.Publisher('voice_txt', String, queue_size=1)
 
 # load model and tokenizer
-path_to_model = "/home/dvalentino5/Scrivania/cogrob/cogrob_ws/src/ros_audio_pkg/src/models/wavlm-base-plus-ft-cv3"
+#path_to_model = "/home/dvalentino5/Scrivania/cogrob/cogrob_ws/src/ros_audio_pkg/src/models/wavlm-base-plus-ft-cv3"
+path_to_model = "/models/wawlm-base-plus-cv/"
 processor = Wav2Vec2Processor.from_pretrained(path_to_model)
 model = WavLMForCTC.from_pretrained(path_to_model)
 
@@ -60,20 +61,20 @@ if __name__ == '__main__':
 
 
 
-def speech2text_with_lm(data):
-    from datasets import load_dataset
-    from transformers import Wav2Vec2Processor, Wav2Vec2ForCTC, Wav2Vec2ProcessorWithLM
-    import torch
+# def speech2text_with_lm(data):
+#     from datasets import load_dataset
+#     from transformers import Wav2Vec2Processor, Wav2Vec2ForCTC, Wav2Vec2ProcessorWithLM
+#     import torch
 
-    model_id = "/home/dvalentino5/Scrivania/cogrob/cogrob_ws/src/ros_audio_pkg/src/models/wav2vec2-base-960h-4-gram"
+#     model_id = "/home/dvalentino5/Scrivania/cogrob/cogrob_ws/src/ros_audio_pkg/src/models/wav2vec2-base-960h-4-gram"
 
-    model = Wav2Vec2ForCTC.from_pretrained(model_id)
-    processor = Wav2Vec2ProcessorWithLM.from_pretrained(model_id)
+#     model = Wav2Vec2ForCTC.from_pretrained(model_id)
+#     processor = Wav2Vec2ProcessorWithLM.from_pretrained(model_id)
 
-    input_values = processor(data, return_tensors="pt", sampling_rate=16000).input_values
+#     input_values = processor(data, return_tensors="pt", sampling_rate=16000).input_values
 
-    with torch.no_grad():
-        logits = model(input_values).logits
+#     with torch.no_grad():
+#         logits = model(input_values).logits
 
-    transcription = processor.batch_decode(logits.numpy()).text
-    return transcription
+#     transcription = processor.batch_decode(logits.numpy()).text
+#     return transcription

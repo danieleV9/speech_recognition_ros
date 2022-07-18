@@ -6,7 +6,8 @@ from pepper_nodes.srv import TextToSpeechGTTS, Text2Speech
 
 # Init node
 rospy.init_node('pepper_interface_node', anonymous=True)
-tts = rospy.ServiceProxy('gtts_server', TextToSpeechGTTS) #gTTS with Audacious
+#tts = rospy.ServiceProxy('gtts_server', TextToSpeechGTTS) #gTTS with Audacious
+tts = rospy.ServiceProxy('tts_server', Text2Speech) #TTS with Pepper
 pub = rospy.Publisher('tts_ack', String, queue_size=1)
 
 def callback(text):
