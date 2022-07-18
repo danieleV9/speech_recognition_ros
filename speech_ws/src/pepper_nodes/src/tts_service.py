@@ -7,7 +7,7 @@ IP = "10.0.1.207" # 10.0.1.230
 PORT = 9559
 
 def callback(req):
-    out_str = str(req.s)
+    out_str = str(req.text)
     with open("/home/files/res.txt", "a") as fil:
         fil.write("*"*30)
         fil.write(out_str)
