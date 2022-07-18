@@ -39,7 +39,6 @@ def say(out_str):
     except Exception:
         session = qi.Session()
         session.connect('tcp://%s:9559' % IP )
-
         tts = session.service("ALTextToSpeech")
         tts.setLanguage("English")
         tts.say(out_str)
@@ -60,6 +59,7 @@ if __name__ == "__main__":
     tts = connect_robot()
     rospy.init_node('tts_service')
     rospy.Service('tts_server', Text2Speech, callback)
+    print("Ready to performe tts.")
     rospy.spin()
 
 # def handle_tts(req):
