@@ -2,7 +2,7 @@
 from pepper_nodes.srv import Text2Speech, Text2SpeechResponse
 from naoqi import ALProxy
 import rospy
-IP = "10.0.1.214" # 10.0.1.230
+IP = "10.0.1.207" # 10.0.1.230
 PORT = 9559
 
 def handle_tts(req):
