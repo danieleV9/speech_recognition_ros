@@ -14,7 +14,7 @@ rospy.init_node('microphone_node', anonymous=True)
 r = sr.Recognizer()
 
 # Audio source
-m = sr.Microphone(device_index=None, sample_rate=16000)
+m = sr.Microphone(device_index=24, sample_rate=16000)
 
 # #clear the output
 # clear = lambda: os.system('clear')
