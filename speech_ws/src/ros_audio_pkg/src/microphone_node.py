@@ -25,7 +25,8 @@ with m as source:
     r.adjust_for_ambient_noise(source,duration=3)  
 print("Calibration finished")
 
-rospy.wait_for_service('gtts_server') # when we use Audacious as output for text-to-speech
+#rospy.wait_for_service('gtts_server') # when we use Audacious as output for text-to-speech
+rospy.wait_for_service('tts_server') # when we use Audacious as output for text-to-speech
 
 # this is called from the background thread
 def callback(audio):
