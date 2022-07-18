@@ -43,8 +43,6 @@ if __name__ == '__main__':
             #clear()
             print("Please, say something")
             audio = r.listen(source, phrase_time_limit=5) # obtain audio from the microphone
-        duration = librosa.get_duration(audio)
-        print("Duration of the input: " + str(duration))
         callback(audio)
         print("Audio obtained")
         rospy.wait_for_message('tts_ack',String)
