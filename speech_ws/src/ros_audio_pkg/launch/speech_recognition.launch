@@ -1,0 +1,9 @@
+<launch>
+        <node pkg="pepper_nodes" type="gtts_service.py" name="gtts_service"  output="screen"/>
+        <node pkg="ros_audio_pkg" type="microphone_node.py" name="microphone_node" output="screen"/>
+        <node pkg="ros_audio_pkg" type="speech_recognition_node.py" name="speech_recognition_node" output="screen"/>
+        <node pkg="ros_audio_pkg" type="pepper_interface_node.py" name="pepper_interface_node" output="screen"/>
+</launch>
+
+
+
