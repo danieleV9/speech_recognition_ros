@@ -2,7 +2,7 @@
 from pepper_nodes.srv import ExecuteJS, ExecuteJSResponse
 import qi
 import rospy
-IP = "10.0.1.230" # 10.0.1.230
+IP = "10.0.1.207" # 10.0.1.207
 PORT = 9559
 
 def callback(req):
