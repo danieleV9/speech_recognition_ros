@@ -14,7 +14,7 @@ def callback(req):
         </body>
     </html>
     '''.format(transcription)
-    file = open("pepper_nodes/src/j-tablet-browser/index.html","w")
+    file = open("/home/speech_ws/src/pepper_nodes/src/j-tablet-browser/index.html","w")
     file.write(text)
     file.close()
     print("html updated")
@@ -39,7 +39,7 @@ def connect_robot():
 
 def show(out_str):
     try:
-        tablet.loadApplication("pepper_nodes/src/j-tablet-browser")
+        tablet.loadApplication("/home/speech_ws/src/pepper_nodes/src/j-tablet-browser")
         tablet.showWebview()
     except Exception:
         session = qi.Session()
