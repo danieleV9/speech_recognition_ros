@@ -4,6 +4,7 @@ import qi
 import rospy
 IP = "10.0.1.207" # 10.0.1.207
 PORT = 9559
+# The ip of the robot from the tablet is 198.18.0.1
 
 def callback(req):
     transcription = str(req.text)
@@ -33,6 +34,8 @@ def connect_robot():
 
     #Tablet service
     tablet = session.service("ALTabletService")
+    tablet.resetTablet()
+    tablet.showWebview("http://198.18.0.1/apps/boot-config/preloading_dialog.html")
     #tablet.loadApplication("pepper_nodes/src/j-tablet-browser")
     #tablet.showWebview()
     return tablet

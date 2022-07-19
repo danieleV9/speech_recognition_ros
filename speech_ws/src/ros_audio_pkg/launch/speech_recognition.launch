@@ -1,7 +1,7 @@
 <launch>
         <arg name="nao_ip" default="$(optenv NAO_IP 10.0.1.207)" />
         <arg name="nao_port" default="$(optenv NAO_PORT 9559)" />
-        <arg name="node_start_delay" default="30.0" /> 
+        <arg name="node_start_delay" default="20.0" /> 
         <node pkg="pepper_nodes" type="tts_service.py" name="tts_service"  output="screen" launch-prefix="bash -c 'sleep $(arg node_start_delay); $0 $@' "/>
         <node pkg="ros_audio_pkg" type="microphone_node.py" name="microphone_node" output="screen"/>
         <node pkg="ros_audio_pkg" type="speech_recognition_node.py" name="speech_recognition_node" output="screen"/>
