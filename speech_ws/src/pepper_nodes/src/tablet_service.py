@@ -35,7 +35,7 @@ def connect_robot():
     #Tablet service
     tablet = session.service("ALTabletService")
     tablet.resetTablet()
-    tablet.showWebview("http://198.18.0.1/apps/boot-config/preloading_dialog.html")
+    #tablet.showWebview("http://198.18.0.1/apps/boot-config/preloading_dialog.html")
     #tablet.showWebview()
     return tablet
 
