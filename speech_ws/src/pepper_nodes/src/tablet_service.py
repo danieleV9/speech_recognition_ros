@@ -2,9 +2,22 @@
 from pepper_nodes.srv import ExecuteJS, ExecuteJSResponse
 import qi
 import rospy
+from flask import Flask
 IP = "10.0.1.230" # 10.0.1.230
 PORT = 9559
 # The ip of the robot from the tablet is 198.18.0.1
+
+def update_html(content):
+
+    app = Flask(__name__)
+
+    @app.route('/')
+    def index():
+        return str(content)
+
+    if __name__ == '__main__':
+        app.run(debug=True, host='0.0.0.0')
+
 
 def callback(req):
     transcription = str(req.text)
@@ -37,9 +50,10 @@ def callback(req):
     </html>
     '''
 
-    file = open("/home/speech_ws/src/pepper_nodes/src/j-tablet-browser/index.html","w")
-    file.write(text)
-    file.close()
+    #file = open("/home/speech_ws/src/pepper_nodes/src/j-tablet-browser/index.html","w")
+    #file.write(text)
+    #file.close()
+    update_html(transcription)
     print("html updated")
     show(transcription)
     return ExecuteJSResponse("ACK0")
@@ -65,15 +79,14 @@ def show(out_str):
     try:
         #tablet.executeJS("/home/speech_ws/src/pepper_nodes/src/j-tablet-browser/index.html")
         #tablet.loadUrl("https://www.unisa.it")
-        tablet.loadUrl("file://home/speech_ws/src/pepper_nodes/src/j-tablet-browser/index.html")
+        tablet.loadUrl("http://127.0.0.1:5000/")
         tablet.showWebview()
         #tablet.executeJS(script)
     except Exception:
         session = qi.Session()
         session.connect('tcp://%s:9559' % IP )
         tablet = session.service("ALTabletService")
-        #tablet.executeJS("/home/speech_ws/src/pepper_nodes/src/j-tablet-browser/index.html")
-        tablet.loadUrl("file://home/speech_ws/src/pepper_nodes/src/j-tablet-browser/index.html")
+        tablet.loadUrl("http://127.0.0.1:5000/")
         tablet.showWebview()
         #tablet.executeJS(script)
     # time.sleep(0.5)
