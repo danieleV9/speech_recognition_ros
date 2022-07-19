@@ -52,6 +52,6 @@ def show(out_str):
 if __name__ == "__main__":
     tablet = connect_robot()
     rospy.init_node('tablet_service')
-    rospy.Service('tablet_server', ExecuteJS, callsback)
+    rospy.Service('tablet_server', ExecuteJS, callback)
     print("Ready to update the tablet screen.")
     rospy.spin()
