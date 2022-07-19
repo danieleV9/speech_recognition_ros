@@ -58,22 +58,27 @@ def connect_robot():
     tablet = session.service("ALTabletService")
     tablet.resetTablet()
     #tablet.showWebview("http://198.18.0.1/apps/boot-config/preloading_dialog.html")
-    #tablet.showWebview()
+    tablet.showWebview()
     return tablet
 
 def show(out_str):
+    script = '''
+    var name = prompt("Please enter your name", "Harry Pepper");
+    '''
     try:
         #tablet.executeJS("/home/speech_ws/src/pepper_nodes/src/j-tablet-browser/index.html")
         #tablet.loadUrl("https://www.unisa.it")
-        tablet.loadUrl("file:///home/speech_ws/src/pepper_nodes/src/j-tablet-browser/index.html")
-        tablet.showWebview()
+        #tablet.loadUrl("file:///home/speech_ws/src/pepper_nodes/src/j-tablet-browser/index.html")
+        #tablet.showWebview()
+        tablet.executeJS(script)
     except Exception:
         session = qi.Session()
         session.connect('tcp://%s:9559' % IP )
         tablet = session.service("ALTabletService")
         #tablet.executeJS("/home/speech_ws/src/pepper_nodes/src/j-tablet-browser/index.html")
-        tablet.loadUrl("file:///home/speech_ws/src/pepper_nodes/src/j-tablet-browser/index.html")
-        tablet.showWebview()
+        #tablet.loadUrl("file:///home/speech_ws/src/pepper_nodes/src/j-tablet-browser/index.html")
+        #tablet.showWebview()
+        tablet.executeJS(script)
     # time.sleep(0.5)
 
 if __name__ == "__main__":
