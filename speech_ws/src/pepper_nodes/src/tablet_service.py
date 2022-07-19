@@ -42,14 +42,15 @@ def connect_robot():
 def show(out_str):
     try:
         #tablet.executeJS("/home/speech_ws/src/pepper_nodes/src/j-tablet-browser/index.html")
-        tablet.loadUrl("https://www.unisa.it")
+        #tablet.loadUrl("https://www.unisa.it")
+        tablet.loadUrl("file:///home/speech_ws/src/pepper_nodes/src/j-tablet-browser/index.html")
         tablet.showWebview()
     except Exception:
         session = qi.Session()
         session.connect('tcp://%s:9559' % IP )
         tablet = session.service("ALTabletService")
         #tablet.executeJS("/home/speech_ws/src/pepper_nodes/src/j-tablet-browser/index.html")
-        tablet.loadUrl("https://www.unisa.it")
+        tablet.loadUrl("file:///home/speech_ws/src/pepper_nodes/src/j-tablet-browser/index.html")
         tablet.showWebview()
     # time.sleep(0.5)
 
