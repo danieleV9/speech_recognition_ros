@@ -10,7 +10,7 @@ def callback(req):
     transcription = str(req.text)
     text = '''
     <html>
-        <body>
+        <body bgcolor=”#800000">
             <h1>{}</h1>
         </body>
     </html>
