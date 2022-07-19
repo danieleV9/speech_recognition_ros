@@ -20,6 +20,9 @@ path_to_model = "/models/wawlm-base-plus-cv/"
 processor = Wav2Vec2Processor.from_pretrained(path_to_model)
 model = WavLMForCTC.from_pretrained(path_to_model)
 
+#rospy.wait_for_service('gtts_server') # when we use Audacious as output for text-to-speech
+rospy.wait_for_service('tts_server') # when we use Pepper as output for text-to-speech
+
 # this is called from the background thread
 def callback(audio):
     data = np.array(audio.data,dtype=np.int16)

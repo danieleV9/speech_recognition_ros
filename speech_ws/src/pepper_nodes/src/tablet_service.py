@@ -1,20 +1,25 @@
 #!/usr/bin/env python
-from pepper_nodes.srv import Text2Speech, Text2SpeechResponse
+from pepper_nodes.srv import ExecuteJS, ExecuteJSResponse
 import qi
 import rospy
 IP = "10.0.1.207" # 10.0.1.230
 PORT = 9559
 
 def callback(req):
-    out_str = str(req.text)
-    with open("/home/files/res.txt", "a") as fil:
-        fil.write("*"*30)
-        fil.write(out_str)
-        fil.write("*" * 30)
-        fil.write("\n")
-    print(out_str)
-    say(out_str)
-    return Text2SpeechResponse("ACK0")
+    transcription = str(req.text)
+    text = '''
+    <html>
+        <body>
+            <h1>{}</h1>
+        </body>
+    </html>
+    '''.format(transcription)
+    file = open("pepper_nodes/src/j-tablet-browser/index.html","w")
+    file.write(text)
+    file.close()
+    print("html updated")
+    show(transcription)
+    return ExecuteJSResponse("ACK0")
 
 def connect_robot():
     # Connect to the robot
@@ -26,26 +31,27 @@ def connect_robot():
     motion_service = session.service("ALMotion")
     motion_service.wakeUp()
 
-    #TextToSpeech service
+    #Tablet service
     tablet = session.service("ALTabletService")
-    tablet.loadApplication("pepper_nodes/src/j-tablet-browser")
-    tablet.showWebview()
+    #tablet.loadApplication("pepper_nodes/src/j-tablet-browser")
+    #tablet.showWebview()
     return tablet
 
-def say(out_str):
+def show(out_str):
     try:
-        tts.say(out_str)
+        tablet.loadApplication("pepper_nodes/src/j-tablet-browser")
+        tablet.showWebview()
     except Exception:
         session = qi.Session()
         session.connect('tcp://%s:9559' % IP )
-        tts = session.service("ALTextToSpeech")
-        tts.setLanguage("English")
-        tts.say(out_str)
+        tablet = session.service("ALTabletService")
+        tablet.loadApplication("pepper_nodes/src/j-tablet-browser")
+        tablet.showWebview()
     # time.sleep(0.5)
 
 if __name__ == "__main__":
     tablet = connect_robot()
     rospy.init_node('tablet_service')
-    rospy.Service('tablet_server', Text2Speech, callback)
+    rospy.Service('tablet_server', ExecuteJS, callsback)
     print("Ready to update the tablet screen.")
     rospy.spin()
