@@ -2,21 +2,9 @@
 from pepper_nodes.srv import ExecuteJS, ExecuteJSResponse
 import qi
 import rospy
-from flask import Flask
 IP = "10.0.1.230" # 10.0.1.230
 PORT = 9559
 # The ip of the robot from the tablet is 198.18.0.1
-
-def update_html(content):
-
-    app = Flask(__name__)
-
-    @app.route('/')
-    def index():
-        return str(content)
-
-    if __name__ == '__main__':
-        app.run(debug=True, host='0.0.0.0')
 
 
 def callback(req):
@@ -32,7 +20,7 @@ def callback(req):
     #file = open("/home/speech_ws/src/pepper_nodes/src/j-tablet-browser/index.html","w")
     #file.write(text)
     #file.close()
-    update_html(transcription)
+    #update_html(transcription)
     print("html updated")
     show(transcription)
     return ExecuteJSResponse("ACK0")

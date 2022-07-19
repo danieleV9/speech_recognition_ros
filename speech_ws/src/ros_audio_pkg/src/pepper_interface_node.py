@@ -3,10 +3,24 @@ import rospy
 from std_msgs.msg import Int16MultiArray, String
 import numpy as np
 from pepper_nodes.srv import ExecuteJS, Text2Speech
+from flask import Flask
 
 # Init node
 rospy.init_node('pepper_interface_node', anonymous=True)
 
+def update_html(content):
+
+    app = Flask(__name__)
+
+    @app.route('/')
+    def index():
+        return str(content)
+
+    if __name__ == '__main__':
+        app.run(debug=True, host='0.0.0.0')
+
+
+update_html("Hello Pepper")
 #tts = rospy.ServiceProxy('gtts_server', TextToSpeechGTTS) #gTTS with Audacious
 tts = rospy.ServiceProxy('tts_server', Text2Speech) #TTS with Pepper
 tablet = rospy.ServiceProxy('tablet_server', ExecuteJS) # Pepper tablet
