@@ -14,20 +14,14 @@ pub = rospy.Publisher('tts_ack', String, queue_size=1)
 
 def callback(text):
     resp_tts = tts(text.data)
+    resp_tablet = tablet(text.data)
+    print(resp_tts.ack)
+    print(resp_tablet.ack)
     if resp_tts.ack == "ACK0":
         print("tts ok")
-        pub.publish(resp_tts.ack)
     else:
         print("Error with tts")
-        pub.publish(resp_tts.ack)
-    
-    resp_tablet = tablet(text.data)
-    if resp_tablet.ack == "ACK0":
-        print("tablet ok")
-        pub.publish(resp_tts.ack)
-    else:
-        print("Error with tablets")
-        pub.publish(resp_tts.ack)
+    pub.publish(resp_tts.ack)
 
 def listener():
     rospy.Subscriber("voice_txt", String, callback)
