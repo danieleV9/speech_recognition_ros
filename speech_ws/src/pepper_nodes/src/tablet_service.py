@@ -13,17 +13,11 @@ def callback(req):
     <!DOCTYPE html>
     <html>
     <head>
-    <style>
-    <body style="background-color:red;">
-      background-color: #CD5C5C;
-
-    </style>
+        <title>HTML Backgorund Color</title>
     </head>
-    <body>
-
-    <h1>{trans}</h1>
-    <p><a href="https://www.w3schools.com">Visit W3Schools.com!</a></p>
-
+    <body style="background-color:red;">
+        <h1>Products</h1>
+        <p>We have developed more than 10 products till now.</p>
     </body>
     </html>
     '''.format(trans = transcription)
@@ -54,15 +48,18 @@ def connect_robot():
 def show(out_str):
     try:
         #tablet.loadUrl("https://www.unisa.it")
-        tablet.loadUrl("http://127.0.0.1:5001/")
-        tablet.showWebview()
+        #tablet.loadUrl("http://127.0.0.1:5001/")
+        res_web = tablet.showWebview("http://127.0.0.1:5001/")
+        print(str(res_web))
         print("HTML loaded")
     except Exception:
         session = qi.Session()
         session.connect('tcp://%s:9559' % IP )
         tablet = session.service("ALTabletService")
-        tablet.loadUrl("http://127.0.0.1:5001/")
-        tablet.showWebview()
+        #tablet.loadUrl("http://127.0.0.1:5001/")
+        res_web = tablet.showWebview("http://127.0.0.1:5001/")
+        print(str(res_web))
+        print("HTML loaded")
     # time.sleep(0.5)
 
 if __name__ == "__main__":
