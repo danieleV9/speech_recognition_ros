@@ -49,7 +49,7 @@ def show(out_str):
     try:
         #tablet.loadUrl("https://www.unisa.it")
         #tablet.loadUrl("http://127.0.0.1:5001/")
-        res_web = tablet.showWebview("http://127.0.0.1:5001/")
+        res_web = tablet.showWebview("http://10.0.1.210:5001/")
         print(str(res_web))
         print("HTML loaded")
     except Exception:
@@ -57,7 +57,7 @@ def show(out_str):
         session.connect('tcp://%s:9559' % IP )
         tablet = session.service("ALTabletService")
         #tablet.loadUrl("http://127.0.0.1:5001/")
-        res_web = tablet.showWebview("http://127.0.0.1:5001/")
+        res_web = tablet.showWebview("http://10.0.1.210:5001/")
         print(str(res_web))
         print("HTML loaded")
     # time.sleep(0.5)
