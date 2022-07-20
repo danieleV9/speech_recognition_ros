@@ -13,11 +13,11 @@ def callback(req):
     <!DOCTYPE html>
     <html>
     <head>
-        <title>HTML Backgorund Color</title>
+        <title>ASR output</title>
     </head>
     <body style="background-color:red;">
-        <h1>Products</h1>
-        <p>We have developed more than 10 products till now.</p>
+        <h1>ASR output</h1>
+        <p>{trans}</p>
     </body>
     </html>
     '''.format(trans = transcription)
