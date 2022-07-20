@@ -2,7 +2,7 @@
 from pepper_nodes.srv import ExecuteJS, ExecuteJSResponse, LoadUrl, LoadUrlResponse
 import qi
 import rospy
-IP = "10.0.1.230" # 10.0.1.230
+IP = "10.0.1.207" # 10.0.1.207
 PORT = 9559
 # The ip of the robot from the tablet is 198.18.0.1
 
@@ -15,9 +15,9 @@ def callback(req):
     <head>
         <title>ASR output</title>
     </head>
-    <body style="background-color:red;">
-        <h1>ASR output</h1>
-        <p>{trans}</p>
+    <body style="background-color:grey;">
+        <h1>ASR output:</h1>
+        <h2>{trans}</h2>
     </body>
     </html>
     '''.format(trans = transcription)
