@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import rospy
 from std_msgs.msg import Int16MultiArray, String
+from pepper_nodes.srv import Text2Speech
 import numpy as np
 import os
 import time
@@ -10,6 +11,9 @@ import librosa
 # Init node
 pub = rospy.Publisher('mic_data', Int16MultiArray, queue_size=1)
 rospy.init_node('microphone_node', anonymous=True)
+
+#tts = rospy.ServiceProxy('gtts_server', TextToSpeechGTTS) #gTTS with Audacious
+tts = rospy.ServiceProxy('tts_server', Text2Speech) #TTS with Pepper
 
 # Initialize a Recognizer
 r = sr.Recognizer()
@@ -41,6 +45,7 @@ if __name__ == '__main__':
     while not rospy.is_shutdown():
         with m as source:
             #clear()
+            tts("Please, say something")
             print("Please, say something")
             audio = r.listen(source, phrase_time_limit=5) # obtain audio from the microphone
         callback(audio)
