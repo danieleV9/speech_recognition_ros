@@ -28,7 +28,7 @@ def callback(req):
     </html>
     '''.format(trans = transcription)
 
-    file = open("/home/speech_ws/webapp/templates/index.html","w")
+    file = open("/home/webapp/templates/index.html","w")
     file.write(text)
     file.close()
     print("file html updated")
