@@ -16,9 +16,8 @@ def callback(req):
         <title>ASR output</title>
     </head>
     <body style="background-color:white;">
-    <div style="color: royalblue;padding: 180px 0;border: 3px solid goldenrod;text-align: center;">
-        <h1>ASR output:</h1>
-        <h2>{trans}</h2>
+    <div style="color: black;padding: 200px 0;border: 2px solid white;text-align: center;">
+        <h1 style="font-size: 34px">{trans}</h1>
     </div>
     </body>
     </html>
