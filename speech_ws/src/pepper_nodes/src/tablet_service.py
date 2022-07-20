@@ -17,7 +17,7 @@ def callback(req):
     </head>
     <body style="background-color:white;">
     <div style="color: black;padding: 200px 0;border: 2px solid white;text-align: center;">
-        <h1 style="font-size: 52px">{trans}</h1>
+        <h1 style="font-size: 60px">{trans}</h1>
     </div>
     </body>
     </html>
