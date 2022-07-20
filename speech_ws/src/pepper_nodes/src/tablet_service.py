@@ -14,9 +14,9 @@ def callback(req):
     <html>
     <head>
     <style>
-    body {
+    <body style="background-color:red;">
       background-color: #CD5C5C;
-    }
+
     </style>
     </head>
     <body>
