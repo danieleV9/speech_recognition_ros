@@ -15,9 +15,11 @@ def callback(req):
     <head>
         <title>ASR output</title>
     </head>
-    <body style="background-color:grey;">
-        <h1 style="color:orange;text-align:center;position:absolute;left:50%;top:50%;margin-left:-110px;margin-top:-100px;">ASR output:</h1>
-        <h2 style="color:blue;text-align:center;position:absolute;left:40%;top:50%;margin-left:-100px;margin-top:-50px;">{trans}</h2>
+    <body style="background-color:white;">
+    <div style="color: royalblue;padding: 70px 0;border: 3px solid goldenrod;text-align: center;">
+        <h1>ASR output:</h1>
+        <h2>{trans}</h2>
+    </div>
     </body>
     </html>
     '''.format(trans = transcription)
