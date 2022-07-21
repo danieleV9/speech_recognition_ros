@@ -15,11 +15,13 @@ pub = rospy.Publisher('tts_ack', String, queue_size=1)
 
 def callback(text):
     str_text = str(text.data)
-    str_text = str_text.replace("im","i'm")
-    str_text = str_text.replace("dont","don't")
-    str_text = str_text.replace("hello","hello pepper")
+    str_text = str_text.replace(" im "," i'm ")
+    str_text = str_text.replace(" dont "," don't ")
+    str_text = str_text.replace(" piper "," pepper ")
+    str_text = str_text.replace(" peppe "," pepper ")
+    str_text = str_text.replace(" beppe "," pepper ")
     if str_text == "" or str_text == " ":
-        str_text = "Please, say something"
+        str_text = "You did not speak"
     resp_tablet = tablet(str_text)
     resp_tts = tts(str_text)
     print(resp_tts.ack)
