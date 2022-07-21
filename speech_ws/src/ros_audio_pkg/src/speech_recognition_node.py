@@ -11,7 +11,7 @@ import torch
 
 # Init node
 rospy.init_node('speech_recognition_node', anonymous=True)
-pub1 = rospy.Publisher('voice_data', Int16MultiArray, queue_size=1)
+#pub1 = rospy.Publisher('voice_data', Int16MultiArray, queue_size=1)
 pub2 = rospy.Publisher('voice_txt', String, queue_size=1)
 
 # load model and tokenizer
@@ -31,7 +31,7 @@ def callback(audio):
     try:
         spoken_text = speech2text(np.double(data))
         print("Output of the ASR module: " + spoken_text[0])
-        pub1.publish(audio) # Publish audio only if it contains words
+        #pub1.publish(audio) # Publish audio only if it contains words
         pub2.publish(spoken_text[0])
     except:
         print("I did not understand what you said")
@@ -43,7 +43,7 @@ def listener():
 # Transcription with our models
 
 def speech2text(data):          
-    start = time.time()
+    #start = time.time()
     # tokenize
     input_values = processor(data, return_tensors="pt", padding="longest", sampling_rate=16_000).input_values  # Batch size 1
 
@@ -54,8 +54,8 @@ def speech2text(data):
     predicted_ids = torch.argmax(logits, dim=-1)
     transcription = processor.batch_decode(predicted_ids)
     #print(transcription)
-    end = time.time()
-    print("Inference time: " + str(end - start))
+    #end = time.time()
+    #print("Inference time: " + str(end - start))
     return transcription
 
 

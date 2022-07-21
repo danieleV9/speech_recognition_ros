@@ -45,9 +45,9 @@ if __name__ == '__main__':
     while not rospy.is_shutdown():
         with m as source:
             #clear()
-            tts("Please, say something")
             print("Please, say something")
-            audio = r.listen(source, phrase_time_limit=5) # obtain audio from the microphone
+            tts("Please, say something")
+            audio = r.listen(source, phrase_time_limit=6) # obtain audio from the microphone
         callback(audio)
         print("Audio obtained")
         rospy.wait_for_message('tts_ack',String)
