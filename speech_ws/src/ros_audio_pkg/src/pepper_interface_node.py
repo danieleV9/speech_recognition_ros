@@ -17,7 +17,7 @@ def callback(text):
     str_text = str(text.data)
     str_text = str_text.replace("im","i'm")
     str_text = str_text.replace("dont","don't")
-    str_text = str_text.replace("piper","pepper")
+    str_text = str_text.replace("hello","hello pepper")
     if str_text == "" or str_text == " ":
         str_text = "Please, say something"
     resp_tablet = tablet(str_text)
