@@ -27,7 +27,7 @@ m = sr.Microphone(device_index=24, sample_rate=16000)
 # Calibration within the environment
 print("Calibrating...")
 with m as source:
-    r.adjust_for_ambient_noise(source,duration=3)  
+    r.adjust_for_ambient_noise(source,duration=2)  
 print("Calibration finished")
 
 #rospy.wait_for_service('gtts_server') # when we use Audacious as output for text-to-speech
