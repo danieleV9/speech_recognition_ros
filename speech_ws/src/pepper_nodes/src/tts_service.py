@@ -14,13 +14,8 @@ def callback(req):
     #     fil.write("*" * 30)
     #     fil.write("\n")
     #print(out_str)
-    if out_str == "" or out_str==" ":
-        text = "Please, say something"
-        say(text)
-        return Text2SpeechResponse("ACK0")
-    else:
-        say(out_str)
-        return Text2SpeechResponse("ACK0")
+    say(out_str)
+    return Text2SpeechResponse("ACK0")
 
 def connect_robot():
     # Connect to the robot

@@ -14,8 +14,14 @@ tablet = rospy.ServiceProxy('tablet_server', LoadUrl) # Pepper tablet
 pub = rospy.Publisher('tts_ack', String, queue_size=1)
 
 def callback(text):
-    resp_tablet = tablet(text.data)
-    resp_tts = tts(text.data)
+    str_text = str(text.data)
+    str_text = str_text.replace("im","i'm")
+    str_text = str_text.replace("dont","don't")
+    str_text = str_text.replace("piper","pepper")
+    if str_text == "" or str_text == " ":
+        str_text = "Please, say something"
+    resp_tablet = tablet(str_text)
+    resp_tts = tts(str_text)
     print(resp_tts.ack)
     print(resp_tablet.ack)
     if resp_tts.ack == "ACK0":
