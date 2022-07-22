@@ -9,7 +9,7 @@ PORT = 9559
 
 def callback(req):
     transcription = str(req.text)
-    transcription = transcription.capitalize()
+    transcription = transcription.upper()
     text = '''
     <!DOCTYPE html>
     <html>
