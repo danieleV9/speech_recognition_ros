@@ -22,6 +22,9 @@ def callback(text):
     str_text = str_text.replace("piper ","pepper ")
     str_text = str_text.replace("peppe ","pepper ")
     str_text = str_text.replace("beppe ","pepper ")
+
+    pepper_resp = str_text
+
     if str_text == "" or str_text == " ":
         str_text = "You did not speak"
         pepper_resp = "You did not speak"
@@ -43,7 +46,6 @@ def callback(text):
 
     resp_tablet = tablet(str_text)
     resp_tts = tts(pepper_resp)
-    #resp_tts = tts(str_text)
     print(resp_tts.ack)
     print(resp_tablet.ack)
     if resp_tts.ack == "ACK0":
