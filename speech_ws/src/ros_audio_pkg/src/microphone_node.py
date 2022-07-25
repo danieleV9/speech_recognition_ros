@@ -45,8 +45,8 @@ if __name__ == '__main__':
     while not rospy.is_shutdown():
         with m as source:
             #clear()
-            print("Please, say something")
-            tts("Please, say something")
+            #print("Please, say something")
+            #tts("Please, say something")
             audio = r.listen(source, phrase_time_limit=6) # obtain audio from the microphone
         callback(audio)
         print("Audio obtained")
