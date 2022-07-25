@@ -39,7 +39,7 @@ def callback(text):
         pepper_resp = "OK, I booked a table for five at Pigreco"
     if str_text == "thank you":
         pepper_resp = "you are welcome, would you like to hear some music in the meantime?"
-    if str_text == "play my favorite playlist on google music":
+    if str_text == "yes play my favorite playlist on google music":
         pepper_resp = "OK, good listening, anything else I can do for you?"
     if str_text == "no thanks see you soon":
         pepper_resp = "bye-bye"
