@@ -24,14 +24,14 @@ m = sr.Microphone(device_index=24, sample_rate=16000)
 # #clear the output
 # clear = lambda: os.system('clear')
 
+#rospy.wait_for_service('gtts_server') # when we use Audacious as output for text-to-speech
+rospy.wait_for_service('tts_server') # when we use Pepper as output for text-to-speech
+
 # Calibration within the environment
 print("Calibrating...")
 with m as source:
-    r.adjust_for_ambient_noise(source,duration=2)  
+    r.adjust_for_ambient_noise(source,duration=3)  
 print("Calibration finished")
-
-#rospy.wait_for_service('gtts_server') # when we use Audacious as output for text-to-speech
-rospy.wait_for_service('tts_server') # when we use Pepper as output for text-to-speech
 
 # this is called from the background thread
 def callback(audio):
@@ -45,9 +45,9 @@ if __name__ == '__main__':
     while not rospy.is_shutdown():
         with m as source:
             #clear()
-            #print("Please, say something")
-            #tts("Please, say something")
-            audio = r.listen(source, phrase_time_limit=6) # obtain audio from the microphone
+            print("Please, say something")
+            tts("Please, say something")
+            audio = r.listen(source, phrase_time_limit=5) # obtain audio from the microphone
         callback(audio)
         print("Audio obtained")
         rospy.wait_for_message('tts_ack',String)

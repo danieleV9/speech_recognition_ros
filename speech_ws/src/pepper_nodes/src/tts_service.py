@@ -30,7 +30,7 @@ def connect_robot():
     #TextToSpeech service
     tts = session.service("ALTextToSpeech")
     tts.setLanguage("English")
-    tts.say("Hello, my name is Pepper")
+    #tts.say("Hello, my name is Pepper")
     return tts
 
 def say(out_str):
