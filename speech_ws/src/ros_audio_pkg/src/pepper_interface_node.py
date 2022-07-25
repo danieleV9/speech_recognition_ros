@@ -31,7 +31,7 @@ def callback(text):
 
     if str_text == "good morning do you remember me":
         pepper_resp = "Of course, you are Daniele"
-    if str_text == "are you ready to perform speech recognition":
+    if str_text == "are you ready to perform speech recognition" or str_text == "are you ready to perform a speech recognition":
         pepper_resp = "Yes, I'm already doing it actually"
     if str_text == "i am hungry book me the nearest restaurant":
         pepper_resp = "OK, for how many people?"
