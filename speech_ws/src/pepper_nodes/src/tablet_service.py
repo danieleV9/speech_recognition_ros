@@ -2,7 +2,7 @@
 from pepper_nodes.srv import ExecuteJS, ExecuteJSResponse, LoadUrl, LoadUrlResponse
 import qi
 import rospy
-IP = "10.0.1.230" # 10.0.1.230
+IP = "10.0.1.207" # 10.0.1.207
 PORT = 9559
 # The ip of the robot from the tablet is 198.18.0.1
 
